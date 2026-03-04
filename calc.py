@@ -42,7 +42,7 @@ def main():
         if operation != "sqrt":
             second_number = float(input("Enter the second number: "))
         else :
-            second_number = 0
+            second_number = None
         
         
         calculator = AdvancedCalculator(first_number, operation, second_number)
