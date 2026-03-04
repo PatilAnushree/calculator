@@ -19,6 +19,15 @@ class Calculator:
             return "Error: Division by zero is not allowed."
         return self.first_number / self.second_number
     
+class AdvancedCalculator(Calculator):
+    def power(self):
+        return self.first_number ** self.second_number
+    
+    def square_root(self):
+        if self.first_number < 0:
+            return "Error: Square root of a negative number is not allowed."
+        return self.first_number ** 0.5
+    
 def main():
     while True:
         print("\nSimple Calculator")
@@ -27,10 +36,16 @@ def main():
             print("Exiting the calculator. Goodbye!")
             break
         first_number = float(input("Enter the first number: "))
-        operation = input("Enter the operation (+, -, *, /): ")
-        second_number = float(input("Enter the second number: "))
 
-        calculator = Calculator(first_number, operation, second_number)
+        operation = input("Enter the operation (+, -, *, /,^ ,sqrt): ")
+        operation = operation.lower()
+        if operation != "sqrt":
+            second_number = float(input("Enter the second number: "))
+        else :
+            second_number = 0
+        
+        
+        calculator = AdvancedCalculator(first_number, operation, second_number)
 
         if calculator.operation == "+":
             result = calculator.add()
@@ -43,6 +58,12 @@ def main():
 
         elif calculator.operation == "/":
             result = calculator.divide()
+
+        elif calculator.operation == "^":
+            result = calculator.power()
+
+        elif calculator.operation.lower() == "sqrt":
+            result = calculator.square_root()
 
         elif calculator.operation.lower() == "q":
             print("Exiting the calculator. Goodbye!")
